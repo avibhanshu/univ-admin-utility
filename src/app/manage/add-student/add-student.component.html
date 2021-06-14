@@ -2,7 +2,11 @@
   <form (ngSubmit)="onAddStudent(f)" #f="ngForm">
     <mat-card fxFlex.xs="100%" fxFlex="400px">
       <mat-card-title fxLayoutAlign="center">Enter details</mat-card-title>
-      <mat-card-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <mat-card-content
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="15px"
+      >
         <mat-form-field>
           <input
             type="text"
@@ -12,11 +16,13 @@
             name="studentName"
             required
             #nameInput="ngModel"
-            />
-            <mat-error *ngIf="nameInput.hasError('required')">Field must not be empty.</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input
+          />
+          <mat-error *ngIf="nameInput.hasError('required')"
+            >Field must not be empty.</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
             type="text"
             matInput
             placeholder="Roll number"
@@ -41,7 +47,9 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions fxLayoutAlign="center">
-        <button type="submit" color="primary" mat-button [disabled]="f.invalid">Submit</button>
+        <button type="submit" color="primary" mat-button [disabled]="f.invalid">
+          Submit
+        </button>
       </mat-card-actions>
     </mat-card>
   </form>

@@ -20,7 +20,9 @@ export class AddStudentComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.courseSubscription = this.courseService.coursesChanged.subscribe(courses => this.courses = courses);
+    this.courseSubscription = this.courseService.coursesChanged.subscribe(
+      (courses) => (this.courses = courses)
+    );
     this.courseService.fetchAvailableCourses();
   }
 

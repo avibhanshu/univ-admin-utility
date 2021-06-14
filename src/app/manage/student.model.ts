@@ -3,6 +3,6 @@ import { Course } from "./course.model";
 export interface Student {
     name: string;
     rollNumber: string;
-    course: Course;
+    course?: Course;
     date?: Date; 
 }
