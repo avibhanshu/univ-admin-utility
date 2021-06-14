@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -44,7 +45,8 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [AuthService, StudentService, CourseService],
   bootstrap: [AppComponent],

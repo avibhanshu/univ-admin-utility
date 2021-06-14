@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Student } from './student.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -17,14 +18,14 @@ export class StudentService {
     });
     this.studentAdded.next(student);
   }
-  
+
   fetchStudents() {
     this.db
-    .collection('students')
-    .valueChanges()
-    .subscribe((students: Student[]) => {
-      this.studentsChanged.next(students);
-    });
+      .collection('students')
+      .valueChanges()
+      .subscribe((students: Student[]) => {
+        this.studentsChanged.next(students);
+      });
   }
 
   private addStudentsToDatabase(student: Student) {
