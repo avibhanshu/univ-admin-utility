@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "university-admin-utility": {
+      "hosting": {
+        "univ-admin-utility": [
+          "university-admin-utility"
+        ]
+      }
+    }
+  }
+}

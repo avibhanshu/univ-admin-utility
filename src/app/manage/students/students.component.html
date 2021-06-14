@@ -17,6 +17,21 @@
   <ng-container matColumnDef="course">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Course</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.course.name }}</mat-cell>
+    <!-- <mat-cell *matCellDef="let element">
+      <mat-form-field>
+        <mat-select
+          placeholder="Choose course"
+          ngModel
+          name="course"
+          required
+        >
+          <mat-option *ngFor="let course of courses | async" [value]="course">
+            {{ course.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-cell> -->
+
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

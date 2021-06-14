@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -19,6 +21,7 @@ import { AddStudentComponent } from './manage/add-student/add-student.component'
 import { AuthService } from './auth/auth.service';
 import { StudentService } from './manage/student.service';
 import { CourseService } from './manage/course.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { CourseService } from './manage/course.service';
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [AuthService, StudentService, CourseService],
   bootstrap: [AppComponent],

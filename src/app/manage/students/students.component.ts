@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,10 +11,10 @@ import { StudentService } from '../student.service';
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css'],
 })
-export class StudentsComponent implements OnInit, AfterViewInit {
+export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns = ['name', 'rollNumber', 'course'];
   dataSource = new MatTableDataSource<Student>();
-  studentSubscription: Subscription;
+  private studentsSubscription: Subscription;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -22,16 +22,12 @@ export class StudentsComponent implements OnInit, AfterViewInit {
   constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
-    console.log(this.studentService.getStudents());
-    // console.log(this.dataSource.data);
-    this.studentSubscription = this.studentService.studentAdded
-    .subscribe(
-      (student: Student) => {
-        if (student) {
-          this.dataSource.data = this.studentService.getStudents();
-        }
-        }
-      );
+    this.studentsSubscription = this.studentService.studentsChanged.subscribe(
+      (students: Student[]) => {
+        this.dataSource.data = students;
+      }
+    );
+    this.studentService.fetchStudents();
   }
 
   ngAfterViewInit() {
@@ -41,5 +37,9 @@ export class StudentsComponent implements OnInit, AfterViewInit {
 
   doFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  ngOnDestroy() {
+    this.studentsSubscription.unsubscribe();
   }
 }
