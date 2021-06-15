@@ -64,5 +64,6 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.studentsSubscription.unsubscribe();
+    this.courseSubscription.unsubscribe();
   }
 }
